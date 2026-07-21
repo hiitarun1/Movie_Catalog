@@ -17,7 +17,7 @@ public class Director {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dir_id")
-    private Long Id;
+    private Long dirId;
 
     @Column(name = "dir_name", nullable = false)
     private String dirName;

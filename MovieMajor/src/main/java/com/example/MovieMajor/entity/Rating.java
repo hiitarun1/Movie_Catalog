@@ -18,7 +18,7 @@ public class Rating {
     @Column(name = "mov_id")
     private Long movId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "mov_id")
     private Movies movies;

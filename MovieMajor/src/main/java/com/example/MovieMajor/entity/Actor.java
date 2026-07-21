@@ -20,14 +20,14 @@ public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "act_id")
-    private Long Act_id;
+    private Long actId;
 
     @Column(name = "act_name", nullable = false)
-    private String Act_Name;
+    private String actName;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "act_gender")
-    private Gender Act_Gender;
+    private Gender actGender;
 
     @OneToMany(mappedBy = "actor", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<MovieCast> movieCasts = new HashSet<>();
