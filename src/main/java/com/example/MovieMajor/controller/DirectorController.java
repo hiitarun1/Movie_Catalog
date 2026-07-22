@@ -2,7 +2,7 @@ package com.example.MovieMajor.controller;
 
 import com.example.MovieMajor.dto.DirectorRequestDto;
 import com.example.MovieMajor.dto.DirectorResponseDto;
-import com.example.MovieMajor.service.DirectorService;
+import com.example.MovieMajor.service.DirectorServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DirectorController {
 
-    private final DirectorService directorService;
+    private final DirectorServiceImpl directorService;
 
     @PostMapping
     public ResponseEntity<DirectorResponseDto> createDirector(@Valid @RequestBody DirectorRequestDto dto){
