@@ -1,6 +1,5 @@
 package com.example.MovieMajor.controller;
 
-
 import com.example.MovieMajor.dto.MovieRequestDto;
 import com.example.MovieMajor.dto.MovieResponseDto;
 import com.example.MovieMajor.service.MoviesService;
@@ -9,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.PreparedStatement;
 import java.util.List;
 
 @RestController
@@ -36,7 +33,7 @@ public class MovieController {
             @RequestParam(required = false) String lang,
             @RequestParam(required = false) Long dirId,
             @RequestParam(required = false) String title){
-        if(year!=null) return ResponseEntity.ok(moviesService.getMoviesByYear((year));
+        if(year!=null) return ResponseEntity.ok(moviesService.getMoviesByYear(year));
         if(lang!=null) return ResponseEntity.ok(moviesService.getMoviesByLanguage(lang));
         if(dirId!=null) return ResponseEntity.ok(moviesService.getMoviesByDirector(dirId));
         if(title!=null) return ResponseEntity.ok(moviesService.searchMoviesByTitle(title));
@@ -50,7 +47,7 @@ public class MovieController {
 
     @GetMapping("/director/{dirId}/avg-rating")
     public ResponseEntity<Double> getAvgRatingByDirector(@PathVariable Long dirId){
-        return ResponseEntity.ok(moviesService.getAvgRattingByDirector(dirId));
+        return ResponseEntity.ok(moviesService.getAvgRatingByDirector(dirId));
     }
 
     @PutMapping("/{id]")

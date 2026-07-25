@@ -21,7 +21,9 @@ public interface MoviesService {
 
     List<MovieResponseDto> searchMoviesByTitle(String title);
 
-    double getAvgRattingByDirector(Long dirId);
+    List<MovieResponseDto> getTopRatedMovies();
+
+    double getAvgRatingByDirector(Long dirId);
 
     MovieResponseDto updateMovie(Long id, MovieRequestDto dto);
 
