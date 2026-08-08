@@ -16,6 +16,12 @@ import static java.util.spi.ToolProvider.findFirst;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+
+    @ExceptionHandler(DuplicateResourceException.class)
+        public ResponseEntity<Map<String,Object>> handleDuplicate(DuplicateResourceException ex){
+            return buildResponse(HttpStatus.CONFLICT, ex.getMessage());
+    }
+
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Map<String,Object>> handleNotFound(ResourceNotFoundException ex){
         return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage());

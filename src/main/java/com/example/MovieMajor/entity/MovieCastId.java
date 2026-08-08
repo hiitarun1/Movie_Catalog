@@ -1,19 +1,18 @@
 package com.example.MovieMajor.entity;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+
+@AllArgsConstructor
+@NoArgsConstructor
 public class MovieCastId implements Serializable {
     private Long actor;
     private Long movies;
-
-    public MovieCastId(){}
-
-    public MovieCastId(Long actor, Long movies){
-        this.actor=actor;
-        this.movies=movies;
-    }
 
     @Override
     public boolean equals(Object obj){

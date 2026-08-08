@@ -9,13 +9,10 @@ import com.example.MovieMajor.repository.DirectorRepository;
 import com.example.MovieMajor.repository.MoviesRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
-import static java.util.Arrays.stream;
 
 @Service
 @Slf4j
@@ -65,7 +62,7 @@ public class MovieServiceImpl implements MoviesService{
         log.info("Fetching movies by director id: {}", dirId);
 
         directorRepository.findById(dirId).orElseThrow(()->new ResourceNotFoundException("Director not found with id: "+ dirId));
-        return moviesRepository.findByDirectorId(dirId).stream().map(this::mapToResponseDto).collect(Collectors.toList());
+        return moviesRepository.findByDirectorDirId(dirId).stream().map(this::mapToResponseDto).collect(Collectors.toList());
     }
 
     @Override

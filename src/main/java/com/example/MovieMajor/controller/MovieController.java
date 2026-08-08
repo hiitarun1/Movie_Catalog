@@ -50,7 +50,7 @@ public class MovieController {
         return ResponseEntity.ok(moviesService.getAvgRatingByDirector(dirId));
     }
 
-    @PutMapping("/{id]")
+    @PutMapping("/{id}")
     public ResponseEntity<MovieResponseDto> updateMovie(
             @PathVariable Long id,
             @Valid @RequestBody MovieRequestDto dto){
@@ -59,6 +59,7 @@ public class MovieController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMovie(@PathVariable Long id){
+        moviesService.deleteMovie(id);
         return ResponseEntity.noContent().build();
     }
 }
