@@ -2,6 +2,7 @@ package com.example.MovieMajor.service;
 
 import com.example.MovieMajor.dto.ActorRequestDto;
 import com.example.MovieMajor.dto.ActorResponseDto;
+import com.example.MovieMajor.dto.RatingResponseDto;
 
 import java.util.List;
 
