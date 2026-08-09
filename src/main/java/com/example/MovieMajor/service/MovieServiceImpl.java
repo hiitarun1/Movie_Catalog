@@ -9,7 +9,6 @@ import com.example.MovieMajor.repository.DirectorRepository;
 import com.example.MovieMajor.repository.MoviesRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,12 +20,15 @@ public class MovieServiceImpl implements MoviesService{
 
     private final MoviesRepository moviesRepository;
     private final DirectorRepository directorRepository;
+    private final TmdbService tmdbService;
 
     @Override
     public MovieResponseDto createMovie(MovieRequestDto dto){
         log.info("Creating Movie with title: {}",dto.getMovTitle());
         Director director = directorRepository.findById(dto.getDirId()).orElseThrow(()->new ResourceNotFoundException("Director not found with id: "+dto.getDirId()));
         Movies movie = mapToEntity(dto,director);
+        String posterUrl = tmdbService.fetchMoviePosterUrl(dto.getMovTitle());
+        movie.setMovPosterUrl(posterUrl);
         Movies saved = moviesRepository.save(movie);
         log.info("Movie created with id: {}", saved.getMovId());
         return mapToResponseDto(saved);
@@ -115,10 +117,19 @@ public class MovieServiceImpl implements MoviesService{
         return movie;
     }
 
+    public MovieResponseDto fetchAndUpdatePoster(Long id) {
+        Movies movie = moviesRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Movie not found with id: " + id));
+        String posterUrl = tmdbService.fetchMoviePosterUrl(movie.getMovTitle());
+        movie.setMovPosterUrl(posterUrl);
+        return mapToResponseDto(moviesRepository.save(movie));
+    }
+
     private MovieResponseDto mapToResponseDto(Movies movie){
         return new MovieResponseDto(
                 movie.getMovId(),
                 movie.getMovTitle(),
+                movie.getMovPosterUrl(),
                 movie.getMovYear(),
                 movie.getMovLang(),
                 movie.getDirector().getDirId(),

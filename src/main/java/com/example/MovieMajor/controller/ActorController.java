@@ -43,4 +43,9 @@ public class ActorController {
         actorService.deleteActor(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PatchMapping("/{id}/fetch-image")
+    public ResponseEntity<ActorResponseDto> fetchAndUpdateImage(@PathVariable Long id) {
+        return ResponseEntity.ok(actorService.fetchAndUpdateImage(id));
+    }
 }

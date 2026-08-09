@@ -16,4 +16,6 @@ public interface DirectorService {
     public DirectorResponseDto updateDirector(Long id, DirectorRequestDto dto);
 
     void deleteDirector(Long id);
+
+    DirectorResponseDto fetchAndUpdateImage(Long id);
 }

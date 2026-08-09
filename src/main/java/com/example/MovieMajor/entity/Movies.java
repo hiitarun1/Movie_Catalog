@@ -25,6 +25,9 @@ public class Movies {
     @Column(name = "mov_title", nullable = false)
     private String movTitle;
 
+    @Column(name = "mov_poster_url")
+    private String movPosterUrl;
+
     @Column(name = "mov_year")
     private int movYear;
 

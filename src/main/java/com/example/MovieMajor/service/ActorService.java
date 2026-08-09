@@ -17,4 +17,6 @@ public interface ActorService {
     ActorResponseDto updateActor(Long id, ActorRequestDto dto);
 
     void deleteActor(Long id);
+
+    ActorResponseDto fetchAndUpdateImage(Long id);
 }

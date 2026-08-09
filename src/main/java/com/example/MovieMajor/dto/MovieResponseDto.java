@@ -14,9 +14,9 @@ public class MovieResponseDto {
 
     private Long movId;
     private String movTitle;
+    private String movPosterUrl;
     private int movYear;
     private String movLang;
-
     private Long dirId;
     private String dirName;
 }

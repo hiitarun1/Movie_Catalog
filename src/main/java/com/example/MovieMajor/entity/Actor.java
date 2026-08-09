@@ -22,6 +22,9 @@ public class Actor {
     @Column(name = "act_id")
     private Long actId;
 
+    @Column(name="act_image_url")
+    private String actImageUrl;
+
     @Column(name = "act_name", nullable = false)
     private String actName;
 

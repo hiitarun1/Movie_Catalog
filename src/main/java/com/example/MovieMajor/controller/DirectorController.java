@@ -21,6 +21,7 @@ public class DirectorController {
     @PostMapping
     public ResponseEntity<DirectorResponseDto> createDirector(@Valid @RequestBody DirectorRequestDto dto){
         return new ResponseEntity<>(directorService.createDirector(dto), HttpStatus.CREATED);
+
     }
 
     @GetMapping("/{id}")
@@ -42,6 +43,11 @@ public class DirectorController {
     public ResponseEntity<Void> deleteDirector(@PathVariable Long id){
         directorService.deleteDirector(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/fetch-image")
+    public ResponseEntity<DirectorResponseDto> fetchAndUpdateImage(@PathVariable Long id) {
+        return ResponseEntity.ok(directorService.fetchAndUpdateImage(id));
     }
 
 }

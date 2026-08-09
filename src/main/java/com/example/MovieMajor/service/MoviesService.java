@@ -28,4 +28,6 @@ public interface MoviesService {
     MovieResponseDto updateMovie(Long id, MovieRequestDto dto);
 
     void deleteMovie(Long id);
+
+    MovieResponseDto fetchAndUpdatePoster(Long id);
 }

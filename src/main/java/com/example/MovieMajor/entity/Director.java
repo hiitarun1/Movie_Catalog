@@ -22,6 +22,9 @@ public class Director {
     @Column(name = "dir_name", nullable = false)
     private String dirName;
 
+    @Column(name = "dir_image_url")
+    private String dirImageUrl;
+
     @Column(name = "dir_phone")
     private String dirPhone;
 

@@ -14,5 +14,6 @@ public class DirectorResponseDto {
 
     private Long dirId;
     private String dirName;
+    private String dirImageUrl;
     private String dirPhone;
 }

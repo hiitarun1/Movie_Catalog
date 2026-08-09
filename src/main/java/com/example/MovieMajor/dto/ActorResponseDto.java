@@ -14,5 +14,6 @@ public class ActorResponseDto {
 
     private Long actId;
     private String actName;
+    private String actImageUrl;
     private Gender actGender;
 }

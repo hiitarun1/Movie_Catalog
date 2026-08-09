@@ -20,11 +20,14 @@ import java.util.stream.Collectors;
 public class ActorServiceImpl implements ActorService {
 
 private final ActorRepository actorRepository;
+private final TmdbService tmdbService;
 
 @Override
 public ActorResponseDto createActor(ActorRequestDto dto){
     log.info("Creating actor with name:{}",dto.getActName());
     Actor actor = mapToEntity(dto);
+    String imageUrl = tmdbService.fetchPersonImageUrl(dto.getActName());
+    actor.setActImageUrl(imageUrl);
     Actor saved = actorRepository.save(actor);
     log.info("Actor created with id:{}", saved.getActId());
     return mapToResponseDto(saved);
@@ -69,10 +72,18 @@ public Actor mapToEntity(ActorRequestDto dto){
     return actor;
 }
 
+public ActorResponseDto fetchAndUpdateImage(Long id){
+    Actor actor =  actorRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Actor not found with id: " + id));
+    String imageUrl = tmdbService.fetchPersonImageUrl(actor.getActName());
+    actor.setActImageUrl(imageUrl);
+    return mapToResponseDto(actorRepository.save(actor));
+}
+
 private ActorResponseDto mapToResponseDto(Actor actor){
     return new ActorResponseDto(
             actor.getActId(),
             actor.getActName(),
+            actor.getActImageUrl(),
             actor.getActGender()
     );
 }

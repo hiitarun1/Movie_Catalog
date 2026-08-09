@@ -62,4 +62,9 @@ public class MovieController {
         moviesService.deleteMovie(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PatchMapping("/{id}/fetch-poster")
+    public ResponseEntity<MovieResponseDto> fetchAndUpdatePoster(@PathVariable Long id) {
+        return ResponseEntity.ok(moviesService.fetchAndUpdatePoster(id));
+    }
 }
